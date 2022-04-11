@@ -165,7 +165,7 @@ div.stars {
           <label class="star star-2" for="star-2" name="label"></label>
           <input class="star star-1" id="star-1" type="radio" name="contact[star]" value="1"/>
           <label class="star star-1" for="star-1" name="label"></label>
-          
+          <input type="hidden" id="star_val" name="star_val" value="">
             </div>
           </div>
           
@@ -283,6 +283,7 @@ div.stars {
       $("input:radio").on("click", function(){
         $('input:radio').removeAttr('checked');
         $(this).attr('checked','true');
+        $("#star_val").val($(this).val());
         //alert("nvhv");
         //alert($( "input:checked" ).val());
         {% comment %} $("input:radio").not($(this)).prop('checked', false); {% endcomment %}
