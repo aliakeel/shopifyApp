@@ -155,16 +155,16 @@ div.stars {
       </div>
        <div class="stars" style="display: flex;align-items: center;flex-direction: column;" >
         <div style="display:flex;flex-direction: row-reverse;justify-content: center;">
-          <input class="star star-5" id="star-5" type="radio" name="contact[star]"/>
-          <label class="star star-5" for="star-5"></label>
-          <input class="star star-4" id="star-4" type="radio" name="contact[star]" />
-          <label class="star star-4" for="star-4"></label>
-          <input class="star star-3" id="star-3" type="radio" name="contact[star]" />
-          <label class="star star-3" for="star-3"></label>
-          <input class="star star-2" id="star-2" type="radio" name="contact[star]" />
-          <label class="star star-2" for="star-2"></label>
-          <input class="star star-1" id="star-1" type="radio" name="contact[star]"/>
-          <label class="star star-1" for="star-1"></label>
+          <input class="star star-5" id="star-5" type="radio" name="contact[star]" value="5" />
+          <label class="star star-5" for="star-5" name="label"></label>
+          <input class="star star-4" id="star-4" type="radio" name="contact[star]" value="4"/>
+          <label class="star star-4" for="star-4" name="label"></label>
+          <input class="star star-3" id="star-3" type="radio" name="contact[star]" value="3"/>
+          <label class="star star-3" for="star-3" name="label"></label>
+          <input class="star star-2" id="star-2" type="radio" name="contact[star]" value="2"/>
+          <label class="star star-2" for="star-2" name="label"></label>
+          <input class="star star-1" id="star-1" type="radio" name="contact[star]" value="1"/>
+          <label class="star star-1" for="star-1" name="label"></label>
           
             </div>
           </div>
@@ -174,7 +174,7 @@ div.stars {
         </textarea>
       </div> {% endcomment %}
       <div class="contact__button">
-        <button type="submit" class="button">
+        <button id="submit_button_form" type="submit" class="button">
           {{ 'templates.contact.form.send' | t }}
         </button>
       </div>
@@ -274,23 +274,46 @@ div.stars {
   ]
 }
 {% endschema %}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
     var star=0;
+    
+
     window.addEventListener("load", function(){
+      $("input:radio").on("click", function(){
+        $('input:radio').removeAttr('checked');
+        $(this).attr('checked','true');
+        //alert("nvhv");
+        //alert($( "input:checked" ).val());
+        {% comment %} $("input:radio").not($(this)).prop('checked', false); {% endcomment %}
+    });
         setTimeout(
             function open(event){
                 document.querySelector(".popup").style.display = "block";
             }
              
         )
+
     });
 
-     {% comment %} document.querySelector("#star").addEventListener("click", function(){
-    
-     });  
+  document.querySelector('input[type="radio"]').addEventListener("click", function(){
+    var ele = document.querySelector('input[type="radio"]');
+    {% comment %} document.querySelector('input[name="rate"]:checked').value = document.querySelector('input[type="radio"]:checked').id; {% endcomment %}
+        for(i = 0; i < ele.length; i++) {
+              
+            if(ele[i].type="radio") {
+              
+                if(ele[i].checked)
+                  {
+                    document.querySelector('input[name="rate"]:checked').value
+                    alert("khjhcxf");
+                    console.log(ele[i].value);
+                  }
+            }
+        }
+     });   
      document.querySelector("#submit_button_form").addEventListener("click", function(){
-        var ele = document.getElementsByTagName('input');
+        var ele = document.querySelector('input[type="radio"]');
               
         for(i = 0; i < ele.length; i++) {
               
@@ -300,7 +323,7 @@ div.stars {
                     console.log(ele[i].value);
             }
         }
-    });  {% endcomment %}
+    });  
 
 </script>
 
