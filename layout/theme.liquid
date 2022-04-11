@@ -192,46 +192,6 @@
           font-size: 1.6rem;
         }
       }
-
-      .popup{
-    /* background-color: #ffffff;
-    width: 420px;
-    padding: 30px 40px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 50%;
-    border-radius: 8px;
-    font-family: "Poppins",sans-serif;
-    display: none; 
-    text-align: center; */
-    position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 70%;
-display:none;
-    z-index:999;
-}
-
-
-.popup button:nth-child(1){
-    display: block;
-    margin:  20px 20px 20px auto;
-    background-color: transparent;
-    font-size: 30px;
-    color: #ffffff;
-		background: #03549a;
-		border-radius: 100%;
-		width: 40px;
-		height: 40px;
-    left:10%;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
@@ -270,9 +230,12 @@ display:none;
 
     {% section 'announcement-bar' %}
     {% section 'header' %}
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    {% comment %} {% section 'popup' %} {% endcomment %}
+    {% section 'contact-popup' %}
+  
+    {% comment %} <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
-    </main>
+    </main>  {% endcomment %}
 
     {% section 'footer' %}
 
@@ -307,22 +270,6 @@ display:none;
         playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
       }
     </script>
-
-    <script type="text/javascript">
-      window.addEventListener("load", function(){
-          setTimeout(
-              function open(event){
-                  document.querySelector(".popup").style.display = "block";
-              },
-              2000 
-          )
-      });
-      
-      
-      document.querySelector("#close").addEventListener("click", function(){
-          document.querySelector(".popup").style.display = "none";
-      });
-          </script>
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}

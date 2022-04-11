@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -6,6 +9,76 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  .popup{
+    /* background-color: #ffffff;
+    width: 420px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: "Poppins",sans-serif;
+    display: none; 
+    text-align: center; */
+    position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+padding:40px;
+width: fit-content;
+display:none;
+    z-index:999;
+    background-color:white;
+
+}
+
+/* 
+.popup  button{
+    margin:  20px 20px 20px 20px;
+    background-color: transparent;
+    font-size: 20px;
+    color: #ffffff;
+		background: #03549a;
+		border-radius: 3px;
+		
+		height: 40px;
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+} */
+
+
+div.stars {
+      width: 100%;
+      display: inline-block;
+      text-align:center;
+      
+    }
+    input.star { display: none; }
+    label.star {
+      float: inherit;
+      padding: 10px;
+      font-size: 36px;
+      color: #444;
+      transition: all .2s;
+    }
+    input.star:checked ~ label.star:before {
+      content: '\f005';
+      color: #FD4;
+      transition: all .25s;
+    }
+    input.star-5:checked ~ label.star:before {
+      color: #FE7;
+      text-shadow: 0 0 20px #952;
+    }
+    input.star-1:checked ~ label.star:before { color: #F62; }
+    label.star:hover { transform: rotate(-15deg) scale(1.3); }
+    label.star:before {
+      content: '\f006';
+      font-family: FontAwesome;
+    }
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -13,7 +86,7 @@
     }
   }
 {%- endstyle -%}
-
+<div class="popup">
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
     <h2 class="title title-wrapper--no-top-margin {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
@@ -32,6 +105,7 @@
           </li>
         </ul>
       {%- endif -%}
+     
       <div class="contact__fields">
         <div class="field">
           <input class="field__input" autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.name' | t }}">
@@ -79,10 +153,26 @@
         </textarea>
         <label class="form__label field__label" for="ContactForm-body">{{ 'templates.contact.form.comment' | t }}</label>
       </div>
-      <div>
+       <div class="stars" style="display: flex;align-items: center;flex-direction: column;" >
+        <div style="display:flex;flex-direction: row-reverse;justify-content: center;">
+          <input class="star star-5" id="star-5" type="radio" name="contact[star]"/>
+          <label class="star star-5" for="star-5"></label>
+          <input class="star star-4" id="star-4" type="radio" name="contact[star]" />
+          <label class="star star-4" for="star-4"></label>
+          <input class="star star-3" id="star-3" type="radio" name="contact[star]" />
+          <label class="star star-3" for="star-3"></label>
+          <input class="star star-2" id="star-2" type="radio" name="contact[star]" />
+          <label class="star star-2" for="star-2"></label>
+          <input class="star star-1" id="star-1" type="radio" name="contact[star]"/>
+          <label class="star star-1" for="star-1"></label>
+          
+            </div>
+          </div>
+          
+      {% comment %} <div>
         <textarea >
         </textarea>
-      </div>
+      </div> {% endcomment %}
       <div class="contact__button">
         <button type="submit" class="button">
           {{ 'templates.contact.form.send' | t }}
@@ -91,7 +181,7 @@
     {%- endform -%}
   </div>
 </div>
-
+</div>
 {% schema %}
 {
   "name": "t:sections.contact-form.name",
@@ -184,3 +274,34 @@
   ]
 }
 {% endschema %}
+
+<script type="text/javascript">
+    var star=0;
+    window.addEventListener("load", function(){
+        setTimeout(
+            function open(event){
+                document.querySelector(".popup").style.display = "block";
+            }
+             
+        )
+    });
+
+     {% comment %} document.querySelector("#star").addEventListener("click", function(){
+    
+     });  
+     document.querySelector("#submit_button_form").addEventListener("click", function(){
+        var ele = document.getElementsByTagName('input');
+              
+        for(i = 0; i < ele.length; i++) {
+              
+            if(ele[i].type="radio") {
+              
+                if(ele[i].checked)
+                    console.log(ele[i].value);
+            }
+        }
+    });  {% endcomment %}
+
+</script>
+
+
