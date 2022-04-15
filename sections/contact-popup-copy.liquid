@@ -413,9 +413,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
         
         document.querySelector("#popup-section2").style.display = "none";
         document.querySelector(".thankyou").style.display = "block";
-        setTimeout(function(){
-          document.querySelector(".thankyou").style.display = "none";
-      }, 1000);
+        
         {% comment %} document.querySelector(".thankyou").style.display = "block"; {% endcomment %}
 
         console.log("json postman"+response);
