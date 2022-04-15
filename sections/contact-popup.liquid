@@ -369,7 +369,9 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
 <script type="text/javascript">
   var star = 0;
 
-
+  function openPopup(){
+    document.querySelector(".popup").style.display = "block";
+  }
   window.addEventListener("load", function () {
     $("input:radio").on("click", function () {
       $('input:radio').removeAttr('checked');
@@ -379,12 +381,12 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
       //alert($( "input:checked" ).val());
       // {% comment %} $("input:radio").not($(this)).prop('checked', false); {% endcomment %}
     });
-    setTimeout(
+    {% comment %} setTimeout(
       function open(event) {
         document.querySelector(".popup").style.display = "block";
       }
 
-    )
+    ) {% endcomment %}
 
   });
   $(document).ready(function () {
