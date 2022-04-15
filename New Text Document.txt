@@ -15,3 +15,50 @@
           <label class="star star-1" for="star-1"></label>
         </form>
       </div>
+
+
+
+
+
+
+      $("form").submit(function (event) {
+      var formData = {
+        "to": "\""+$("#ContactForm-email").val()+";"+"abba.medix.mail@gmail.com"+";"+"\"",
+        "subject": "\""+"Cutomer Feed back ajax"+"\"",
+        "text": "\""+"<h1>Rated: "+ $("#star_val").val()+" stars</h1>" +$("#ContactForm-body").val()+"\""
+      };
+      console.log("from ajax ");
+      $.ajax({
+                type: "POST",
+        {% comment %} type: "GET", {% endcomment %}
+
+        {% comment %} type: "POST", {% endcomment %}
+        {% comment %} url: "https://mailer-2022.herokuapp.com/", {% endcomment %}
+        url: "https://mailer-2022.herokuapp.com/textmail",
+        {% comment %} contentType:"application/json; charset=utf-8", {% endcomment %}
+        contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+        dataType:"json",
+        data: json. formData,
+        encode: true,
+      }).done(function (data) {
+        //res.status(200).send("sent");
+        console.log(data);
+      });
+
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://mailer-2022.herokuapp.com/textmail",
+        "method": "POST",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-cache",
+          "postman-token": "ba05395f-9a2e-2722-06dd-a3ba032c5f12"
+        },
+        "processData": false,
+        "data": "{\"to\":\"aliakeel27@yahoo.com;aliakeel26gmail.com;a-lala2009@hotmail.com\",\r\n\"subject\":\"Customer Feedback multiple recipe\",\r\n\"text\":\"thanks for your feedback\"\r\n\t\r\n}"
+      }
+      
+      $.ajax(settings).done(function (response) {
+        console.log("json postman"+response);
+      });

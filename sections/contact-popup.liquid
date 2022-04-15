@@ -1,331 +1,422 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
+.section-{{ section.id }}-padding {
+padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
 
-  .popup{
-    /* background-color: #ffffff;
-    width: 420px;
-    padding: 30px 40px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 50%;
-    border-radius: 8px;
-    font-family: "Poppins",sans-serif;
-    display: none; 
-    text-align: center; */
-    position: fixed;
+.popup{
+/* background-color: #ffffff;
+width: 420px;
+padding: 30px 40px;
+position: absolute;
+transform: translate(-50%,-50%);
+left: 50%;
+top: 50%;
+border-radius: 8px;
+font-family: "Poppins",sans-serif;
+display: none;
+text-align: center; */
+position: fixed;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 padding:40px;
 width: fit-content;
+/* display:block; */
 display:none;
-    z-index:999;
-    background-color:white;
+z-index:999;
+background-color:white;
 
 }
 
-/* 
-.popup  button{
-    margin:  20px 20px 20px 20px;
-    background-color: transparent;
-    font-size: 20px;
-    color: #ffffff;
-		background: #03549a;
-		border-radius: 3px;
-		
-		height: 40px;
+/*
+.popup button{
+margin: 20px 20px 20px 20px;
+background-color: transparent;
+font-size: 20px;
+color: #ffffff;
+background: #03549a;
+border-radius: 3px;
 
-    border: none;
-    outline: none;
-    cursor: pointer;
+height: 40px;
+
+border: none;
+outline: none;
+cursor: pointer;
 } */
 
 
 div.stars {
-      width: 100%;
-      display: inline-block;
-      text-align:center;
-      
-    }
-    input.star { display: none; }
-    label.star {
-      float: inherit;
-      padding: 10px;
-      font-size: 36px;
-      color: #444;
-      transition: all .2s;
-    }
-    input.star:checked ~ label.star:before {
-      content: '\f005';
-      color: #FD4;
-      transition: all .25s;
-    }
-    input.star-5:checked ~ label.star:before {
-      color: #FE7;
-      text-shadow: 0 0 20px #952;
-    }
-    input.star-1:checked ~ label.star:before { color: #F62; }
-    label.star:hover { transform: rotate(-15deg) scale(1.3); }
-    label.star:before {
-      content: '\f006';
-      font-family: FontAwesome;
-    }
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
+width: 100%;
+display: inline-block;
+text-align:center;
+
+}
+input.star { display: none; }
+label.star {
+float: inherit;
+padding: 10px;
+font-size: 36px;
+color: #444;
+transition: all .2s;
+}
+input.star:checked ~ label.star:before {
+content: '\f005';
+color: #FD4;
+transition: all .25s;
+}
+input.star-5:checked ~ label.star:before {
+color: #FE7;
+text-shadow: 0 0 20px #952;
+}
+input.star-1:checked ~ label.star:before { color: #F62; }
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+label.star:before {
+content: '\f006';
+font-family: FontAwesome;
+}
+
+.center {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wave {
+  width: 5px;
+  height: 100px;
+  background: linear-gradient(45deg, cyan, #fff);
+  margin: 10px;
+  animation: wave 1s linear infinite;
+  border-radius: 20px;
+}
+.wave:empty{
+  display:block;
+}
+.wave:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.wave:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.wave:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.wave:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.wave:nth-child(6) {
+  animation-delay: 0.5s;
+}
+.wave:nth-child(7) {
+  animation-delay: 0.6s;
+}
+.wave:nth-child(8) {
+  animation-delay: 0.7s;
+}
+.wave:nth-child(9) {
+  animation-delay: 0.8s;
+}
+.wave:nth-child(10) {
+  animation-delay: 0.9s;
+}
+
+@keyframes wave {
+  0% {
+    transform: scale(0);
   }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@media screen and (min-width: 750px) {
+.section-{{ section.id }}-padding {
+padding-top: {{ section.settings.padding_top }}px;
+padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+}
 {%- endstyle -%}
 <div class="popup">
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
-    <h2 class="title title-wrapper--no-top-margin {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
-    {%- form 'contact', id: 'ContactForm', class: 'isolate' -%}
+
+  <div class="color-{{ section.settings.color_scheme }} gradient" id="popup-section1">
+    <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
+      <h2 class="title title-wrapper--no-top-margin {{ section.settings.heading_size }}">
+        {{ section.settings.heading | escape }}</h2>
+      {%- form 'contact', id: 'ContactForm', class: 'isolate' -%}
       {%- if form.posted_successfully? -%}
-        <div class="form-status form-status-list form__message" tabindex="-1" autofocus>{% render 'icon-success' %} {{ 'templates.contact.form.post_success' | t }}</div>
+      <div class="form-status form-status-list form__message" tabindex="-1" autofocus>{% render 'icon-success' %}
+        {{ 'templates.contact.form.post_success' | t }}</div>
       {%- elsif form.errors -%}
-        <div class="form__message">
-          <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>{% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}</h2>
-        </div>
-        <ul class="form-status-list caption-large" role="list">
-          <li>
-            <a href="#ContactForm-email" class="link">
-              {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
-            </a>
-          </li>
-        </ul>
+      <div class="form__message">
+        <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>{% render 'icon-error' %}
+          {{ 'templates.contact.form.error_heading' | t }}</h2>
+      </div>
+      <ul class="form-status-list caption-large" role="list">
+        <li>
+          <a href="#ContactForm-email" class="link">
+            {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+          </a>
+        </li>
+      </ul>
       {%- endif -%}
-     
+
       <div class="contact__fields">
-        <div class="field">
-          <input class="field__input" autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.name' | t }}">
+        {% comment %} <div class="field">
+          <input class="field__input" autocomplete="name" type="text" id="ContactForm-name"
+            name="contact[{{ 'templates.contact.form.name' | t }}]"
+            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+            placeholder="{{ 'templates.contact.form.name' | t }}">
           <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
-        </div>
+        </div> {% endcomment %}
         <div class="field field--with-error">
-          <input
-            autocomplete="email"
-            type="email"
-            id="ContactForm-email"
-            class="field__input"
-            name="contact[email]"
-            spellcheck="false"
-            autocapitalize="off"
+          <input autocomplete="email" type="email" id="ContactForm-email" class="field__input" name="contact[email]"
+            spellcheck="false" autocapitalize="off"
             value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-            aria-required="true"
-            {% if form.errors contains 'email' %}
-              aria-invalid="true"
-              aria-describedby="ContactForm-email-error"
-            {% endif %}
-            placeholder="{{ 'templates.contact.form.email' | t }}"
-          >
-          <label class="field__label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+            aria-required="true" {% if form.errors contains 'email' %} aria-invalid="true"
+            aria-describedby="ContactForm-email-error" {% endif %}
+            placeholder="{{ 'templates.contact.form.email' | t }}">
+          <label class="field__label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }} <span
+              aria-hidden="true">*</span></label>
           {%- if form.errors contains 'email' -%}
-            <small class="contact__field-error" id="ContactForm-email-error">
-              <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
-              <span class="form__message">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</span>
-            </small>
+          <small class="contact__field-error" id="ContactForm-email-error">
+            <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+            <span
+              class="form__message">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }}
+              {{ form.errors.messages['email'] }}</span>
+          </small>
           {%- endif -%}
         </div>
       </div>
-      <div class="field">
-        <input type="tel" id="ContactForm-phone" class="field__input" autocomplete="tel" name="contact[{{ 'templates.contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="{{ 'templates.contact.form.phone' | t }}">
+      {% comment %} <div class="field">
+        <input type="tel" id="ContactForm-phone" class="field__input" autocomplete="tel"
+          name="contact[{{ 'templates.contact.form.phone' | t }}]" pattern="[0-9\-]*"
+          value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+          placeholder="{{ 'templates.contact.form.phone' | t }}">
         <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
-      </div>
+      </div> {% endcomment %}
       <div class="field">
-        <textarea
-          rows="10"
-          id="ContactForm-body"
-          class="text-area field__input"
+        <textarea rows="10" id="ContactForm-body" class="text-area field__input"
           name="contact[{{ 'templates.contact.form.comment' | t }}]"
-          placeholder="{{ 'templates.contact.form.comment' | t }}"
-        >
+          placeholder="{{ 'templates.contact.form.comment' | t }}">
           {{- form.body -}}
         </textarea>
-        <label class="form__label field__label" for="ContactForm-body">{{ 'templates.contact.form.comment' | t }}</label>
+        <label class="form__label field__label"
+          for="ContactForm-body">{{ 'templates.contact.form.comment' | t }}</label>
       </div>
-       <div class="stars" style="display: flex;align-items: center;flex-direction: column;" >
+      <div class="stars" style="display: flex;align-items: center;flex-direction: column;">
         <div style="display:flex;flex-direction: row-reverse;justify-content: center;">
           <input class="star star-5" id="star-5" type="radio" name="contact[star]" value="5" />
           <label class="star star-5" for="star-5" name="label"></label>
-          <input class="star star-4" id="star-4" type="radio" name="contact[star]" value="4"/>
+          <input class="star star-4" id="star-4" type="radio" name="contact[star]" value="4" />
           <label class="star star-4" for="star-4" name="label"></label>
-          <input class="star star-3" id="star-3" type="radio" name="contact[star]" value="3"/>
+          <input class="star star-3" id="star-3" type="radio" name="contact[star]" value="3" />
           <label class="star star-3" for="star-3" name="label"></label>
-          <input class="star star-2" id="star-2" type="radio" name="contact[star]" value="2"/>
+          <input class="star star-2" id="star-2" type="radio" name="contact[star]" value="2" />
           <label class="star star-2" for="star-2" name="label"></label>
-          <input class="star star-1" id="star-1" type="radio" name="contact[star]" value="1"/>
+          <input class="star star-1" id="star-1" type="radio" name="contact[star]" value="1" />
           <label class="star star-1" for="star-1" name="label"></label>
           <input type="hidden" id="star_val" name="star_val" value="">
-            </div>
-          </div>
-          
+        </div>
+      </div>
+
       {% comment %} <div>
-        <textarea >
+        <textarea>
         </textarea>
       </div> {% endcomment %}
       <div class="contact__button">
+        
         <button id="submit_button_form" type="submit" class="button">
           {{ 'templates.contact.form.send' | t }}
         </button>
       </div>
-    {%- endform -%}
+      {%- endform -%}
+      
+      {% comment %} style="display:none;z-index:9999" {% endcomment %}
+    </div>
+
+  </div>
+  <div class="color-{{ section.settings.color_scheme }} gradient" style="display:none" id="popup-section2">
+    <div class="contact page-width section-{{ section.id }}-padding">
+      <div class="center">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </div>
+  </div>
+  <div class="color-{{ section.settings.color_scheme }} gradient" id="popup-section3">
+    <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
+      <div class="thankyou" style="display:none"> Thank You </div>
+
+    </div>
   </div>
 </div>
-</div>
+{% comment %} <button id="submit_button_form2"> mail</button> {% endcomment %}
 {% schema %}
 {
-  "name": "t:sections.contact-form.name",
-  "tag": "section",
-  "class": "section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "default": "Contact form",
-      "label": "Heading"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
-        },
-        {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
-        },
-        {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        }
-      ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "accent-1",
-          "label": "t:sections.all.colors.accent_1.label"
-        },
-        {
-          "value": "accent-2",
-          "label": "t:sections.all.colors.accent_2.label"
-        },
-        {
-          "value": "background-1",
-          "label": "t:sections.all.colors.background_1.label"
-        },
-        {
-          "value": "background-2",
-          "label": "t:sections.all.colors.background_2.label"
-        },
-        {
-          "value": "inverse",
-          "label": "t:sections.all.colors.inverse.label"
-        }
-      ],
-      "default": "background-1",
-      "label": "t:sections.all.colors.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
-    }
-  ],
-  "presets": [
-    {
-      "name": "t:sections.contact-form.presets.name"
-    }
-  ]
+"name": "t:sections.contact-form.name",
+"tag": "section",
+"class": "section",
+"settings": [
+{
+"type": "text",
+"id": "heading",
+"default": "Contact form",
+"label": "Heading"
+},
+{
+"type": "select",
+"id": "heading_size",
+"options": [
+{
+"value": "h2",
+"label": "t:sections.all.heading_size.options__1.label"
+},
+{
+"value": "h1",
+"label": "t:sections.all.heading_size.options__2.label"
+},
+{
+"value": "h0",
+"label": "t:sections.all.heading_size.options__3.label"
+}
+],
+"default": "h1",
+"label": "t:sections.all.heading_size.label"
+},
+{
+"type": "select",
+"id": "color_scheme",
+"options": [
+{
+"value": "accent-1",
+"label": "t:sections.all.colors.accent_1.label"
+},
+{
+"value": "accent-2",
+"label": "t:sections.all.colors.accent_2.label"
+},
+{
+"value": "background-1",
+"label": "t:sections.all.colors.background_1.label"
+},
+{
+"value": "background-2",
+"label": "t:sections.all.colors.background_2.label"
+},
+{
+"value": "inverse",
+"label": "t:sections.all.colors.inverse.label"
+}
+],
+"default": "background-1",
+"label": "t:sections.all.colors.label"
+},
+{
+"type": "header",
+"content": "t:sections.all.padding.section_padding_heading"
+},
+{
+"type": "range",
+"id": "padding_top",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:sections.all.padding.padding_top",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_bottom",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:sections.all.padding.padding_bottom",
+"default": 36
+}
+],
+"presets": [
+{
+"name": "t:sections.contact-form.presets.name"
+}
+]
 }
 {% endschema %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript">
-    var star=0;
-    
+  var star = 0;
 
-    window.addEventListener("load", function(){
-      $("input:radio").on("click", function(){
-        $('input:radio').removeAttr('checked');
-        $(this).attr('checked','true');
-        $("#star_val").val($(this).val());
-        //alert("nvhv");
-        //alert($( "input:checked" ).val());
-        {% comment %} $("input:radio").not($(this)).prop('checked', false); {% endcomment %}
+
+  window.addEventListener("load", function () {
+    $("input:radio").on("click", function () {
+      $('input:radio').removeAttr('checked');
+      $(this).attr('checked', 'true');
+      $("#star_val").val($(this).val());
+      //alert("nvhv");
+      //alert($( "input:checked" ).val());
+      // {% comment %} $("input:radio").not($(this)).prop('checked', false); {% endcomment %}
     });
-        setTimeout(
-            function open(event){
-                document.querySelector(".popup").style.display = "block";
-            }
-             
-        )
+    setTimeout(
+      function open(event) {
+        document.querySelector(".popup").style.display = "block";
+      }
 
-    });
+    )
 
-  document.querySelector('input[type="radio"]').addEventListener("click", function(){
-    var ele = document.querySelector('input[type="radio"]');
-    {% comment %} document.querySelector('input[name="rate"]:checked').value = document.querySelector('input[type="radio"]:checked').id; {% endcomment %}
-        for(i = 0; i < ele.length; i++) {
-              
-            if(ele[i].type="radio") {
-              
-                if(ele[i].checked)
-                  {
-                    document.querySelector('input[name="rate"]:checked').value
-                    alert("khjhcxf");
-                    console.log(ele[i].value);
-                  }
-            }
-        }
-     });   
-     document.querySelector("#submit_button_form").addEventListener("click", function(){
-        var ele = document.querySelector('input[type="radio"]');
-              
-        for(i = 0; i < ele.length; i++) {
-              
-            if(ele[i].type="radio") {
-              
-                if(ele[i].checked)
-                    console.log(ele[i].value);
-            }
-        }
-    });  
+  });
+  $(document).ready(function () {
+    {% comment %} form.submit(function (e) { {% endcomment %}
+    document.querySelector("#submit_button_form").addEventListener("click", function (e) {
+      e.preventDefault();
+      var email_to_send= $("#ContactForm-email").val();
+      var rating = $("#star_val").val();
+      var comment_to_send= $("#ContactForm-body").val();
+      var htmlContent = "<h1>Cusomer FeedBack</h1><br><p>"+rating +" stars</p>"+"<p>"+comment_to_send+"</p>";
+      var settings = {
+        "url": "https://mailer-2022.herokuapp.com/textmail",
+        "method": "POST",
+        "headers": {
+          "content-type": "application/json",
+          {% comment %} 'Access-Control-Allow-Origin':'*',
+          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE',
+          'Access-Control-Allow-Headers': 'Content-Type' {% endcomment %}
+        },
+        "processData": false,
+        "data": "{\"to\":\""+email_to_send+"\",\r\n\"subject\":\"Customer Feedback multiple recipe\",\r\n\"text\":\""+htmlContent+"\"\r\n\t\r\n}"
+        {% comment %} "data": "{\"to\":\"aliakeel27@yahoo.com;aliakeel26gmail.com;a-lala2009@hotmail.com\",\r\n\"subject\":\"Customer Feedback multiple recipe\",\r\n\"text\":\""+htmlContent+"\"\r\n\t\r\n}" {% endcomment %}
+      };
+      document.querySelector("#popup-section1").style.display = "none";
+      $.ajax(settings).done(function (response) {
+        
+        document.querySelector("#popup-section2").style.display = "none";
+        document.querySelector(".thankyou").style.display = "block";
+        {% comment %} document.querySelector(".thankyou").style.display = "block"; {% endcomment %}
+
+        console.log("json postman"+response);
+      });
+      document.querySelector("#popup-section2").style.display = "block";
+    }
+  );
+  
+});
 
 </script>
-
 

@@ -1,0 +1,132 @@
+$("form").submit(function (event) {
+    var formData = {
+      "to": "\""+$("#ContactForm-email").val()+";"+"abba.medix.mail@gmail.com"+";"+"\"",
+      "subject": "\""+"Cutomer Feed back ajax"+"\"",
+      "text": "\""+"<h1>Rated: "+ $("#star_val").val()+" stars</h1>" +$("#ContactForm-body").val()+"\""
+    };
+    console.log("from ajax ");
+    $.ajax({
+              type: "POST",
+      {% comment %} type: "GET", {% endcomment %}
+
+      {% comment %} type: "POST", {% endcomment %}
+      {% comment %} url: "https://mailer-2022.herokuapp.com/", {% endcomment %}
+      {% comment %} url: "https://mailer-2022.herokuapp.com/textmail", {% endcomment %}
+      contentType:"application/json; charset=utf-8",
+      {% comment %} contentType:"application/x-www-form-urlencoded; charset=UTF-8", {% endcomment %}
+      dataType:"json",
+      {% comment %} header:{
+       'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      } {% endcomment %}
+      data: formData,
+      encode: true,
+    }).done(function (data) {
+      //res.status(200).send("sent");
+      console.log(data);
+    });
+
+    
+    event.preventDefault();
+  });
+
+
+  $(document).ready(function () {
+    
+
+    {% comment %} send(); {% endcomment %}
+  });
+
+
+
+  document.querySelector('input[type="radio"]').addEventListener("click", function () {
+    var ele = document.querySelector('input[type="radio"]');
+    // {% comment %} document.querySelector('input[name="rate"]:checked').value = document.querySelector('input[type="radio"]:checked').id; {% endcomment %}
+    for (i = 0; i < ele.length; i++) {
+
+      if (ele[i].type = "radio") {
+
+        if (ele[i].checked) {
+          document.querySelector('input[name="rate"]:checked').value
+          alert("khjhcxf");
+          console.log(ele[i].value);
+        }
+      }
+    }
+  });
+  document.querySelector("#submit_button_form2").addEventListener("click", function () {
+    var settings = {
+      {% comment %} "async": true, {% endcomment %}
+      {% comment %} "crossDomain": true, {% endcomment %}
+      "url": "https://mailer-2022.herokuapp.com/textmail",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json",
+      },
+      "processData": false,
+      "data": "{\"to\":\"aliakeel27@yahoo.com;aliakeel26gmail.com;a-lala2009@hotmail.com\",\r\n\"subject\":\"Customer Feedback multiple recipe\",\r\n\"text\":\"thanks for your feedback\"\r\n\t\r\n}"
+    }
+    
+    $.ajax(settings).done(function (response) {
+      
+      console.log("json postman"+response);
+    });
+
+    {% comment %} var ele = document.querySelector('input[type="radio"]');
+
+    for (i = 0; i < ele.length; i++) {
+
+      if (ele[i].type = "radio") {
+
+        if (ele[i].checked)
+          console.log(ele[i].value);
+      }
+    } {% endcomment %}
+  {% comment %} }); {% endcomment %}
+  function send(){
+    console.log("sending....");
+    var data = JSON.stringify({
+      "to": "aliakeel27@yahoo.com;aliakeel26gmail.com;a-lala2009@hotmail.com",
+      "subject": "Customer Feedback multiple recipe",
+      "text": "thanks for your feedback"
+    });
+    
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
+    
+    xhr.open("POST", "https://mailer-2022.herokuapp.com/textmail");
+    xhr.setRequestHeader("content-type", "application/json");
+    console.log("not sent yet....");
+    xhr.send(data);
+    console.log("not sent yet....");
+
+  }
+
+
+  document.querySelector("#submit_button_form2").addEventListener("click", function () {
+    
+    var settings = {
+      "url": "https://mailer-2022.herokuapp.com/textmail",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json",
+        {% comment %} 'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE',
+        'Access-Control-Allow-Headers': 'Content-Type' {% endcomment %}
+      },
+      "processData": false,
+      "data": "{\"to\":\"aliakeel27@yahoo.com;aliakeel26gmail.com;a-lala2009@hotmail.com\",\r\n\"subject\":\"Customer Feedback multiple recipe\",\r\n\"text\":\"thanks for your feedback\"\r\n\t\r\n}"
+    };
+    
+    $.ajax(settings).done(function (response) {
+      
+      console.log("json postman"+response);
+    });
+  });
