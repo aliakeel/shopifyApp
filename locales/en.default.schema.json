@@ -925,6 +925,9 @@
         }
       }
     },
+    "email": {
+      "name": "Email"
+    },
     "image-banner": {
       "name": "Image banner",
       "settings": {
