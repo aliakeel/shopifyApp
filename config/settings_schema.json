@@ -11,16 +11,6 @@
     "name": "t:settings_schema.colors.name",
     "settings": [
       {
-        "type": "text",
-        "id": "email",
-        "label": {
-          "de": "Versand",
-          "en": "Shipping",
-          "es": "envío",
-          "fr": "livraison"
-        }
-      },
-      {
         "type": "header",
         "content": "t:settings_schema.colors.settings.header__1.content"
       },
@@ -1151,6 +1141,17 @@
         "id": "currency_code_enabled",
         "label": "t:settings_schema.currency_format.settings.currency_code_enabled.label",
         "default": true
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.email.name",
+    "settings": [
+      {
+        "type": "text",
+        "id": "email_mailer",
+        "label": "Email",
+        "info": "Email"
       }
     ]
   }
