@@ -11,6 +11,16 @@
     "name": "t:settings_schema.colors.name",
     "settings": [
       {
+        "type": "text",
+        "id": "email",
+        "label": {
+          "de": "Versand",
+          "en": "Shipping",
+          "es": "envío",
+          "fr": "livraison"
+        }
+      },
+      {
         "type": "header",
         "content": "t:settings_schema.colors.settings.header__1.content"
       },
