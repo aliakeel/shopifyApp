@@ -1154,5 +1154,34 @@
         "info": "Email"
       }
     ]
+  },
+  {
+    "name": {
+      "de": "Email",
+      "en": "Email",
+      "es": "Email",
+      "fr": "Email"
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": {
+          "de": "Email",
+          "en": "Email",
+          "es": "Email",
+          "fr": "Email"
+        }
+      },
+      {
+        "type": "text",
+        "id": "owner_email",
+        "label": {
+          "de": "Email",
+          "en": "Email",
+          "es": "Email",
+          "fr": "Email"
+        }
+      }
+    ]
   }
 ]
