@@ -1154,5 +1154,44 @@
         "info": "Email"
       }
     ]
+  },
+  {
+    "name": {
+      "de": "Pop up Setting",
+      "en": "Pop up Setting",
+      "es": "Pop up Setting",
+      "fr": "Pop up Setting"
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": {
+          "de": "Will be used to get feedback from Customers after order confirmation",
+          "en": "Will be used to get feedback from Customers after order confirmation",
+          "es": "Will be used to get feedback from Customers after order confirmation",
+          "fr": "Will be used to get feedback from Customers after order confirmation"
+        }
+      },
+      {
+        "type": "text",
+        "id": "popup_heading",
+        "label": {
+          "de": "Heading",
+          "en": "Heading",
+          "es": "Heading",
+          "fr": "Heading"
+        }
+      },
+      {
+        "type": "text",
+        "id": "owner_email",
+        "label": {
+          "de": "Emails sent to",
+          "en": "Emails sent to",
+          "es": "Emails sent to",
+          "fr": "Emails sent to"
+        }
+      }
+    ]
   }
 ]
