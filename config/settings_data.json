@@ -96,6 +96,7 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
+    "popup_emails": "aliakeel26@gmail.com;aliakeel27@yahoo.com;a-lala2009@hotmail.com",
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
@@ -182,6 +183,16 @@
         "type": "main-password-footer",
         "settings": {
           "color_scheme": "background-1"
+        }
+      },
+      "contact-popup": {
+        "type": "contact-popup",
+        "settings": {
+          "heading": "Contact form",
+          "heading_size": "h1",
+          "color_scheme": "background-1",
+          "padding_top": 36,
+          "padding_bottom": 36
         }
       }
     },
