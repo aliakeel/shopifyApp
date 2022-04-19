@@ -190,6 +190,9 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
         <button id="submit_button_form" type="submit" class="button">
           {{ 'templates.contact.form.send' | t }}
         </button>
+        <button id="submit_button_form" type="submit" class="button">
+          {{ 'templates.contact.form.send' | t }}
+        </button>
       </div>
       {%- endform -%}
       
@@ -319,14 +322,15 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
   var star = 0;
 
   function openPopup(){
-    document.querySelector(".popup").style.display = "block";
-    document.querySelector(".thankyou").style.display = "none";
-    document.querySelector("#popup-section1").style.display = "block";
+
     {% comment %} document.querySelector('InputID').value = '';
     document.querySelector('InputID').value = ''; {% endcomment %}
     $('input:radio').removeAttr('checked');
-    $("#star_val").val(1);
-    $("#ContactForm-body").val('');
+    $("#star_val").val("");
+    $("#ContactForm-body").val("");
+    document.querySelector(".popup").style.display = "block";
+    document.querySelector(".thankyou").style.display = "none";
+    document.querySelector("#popup-section1").style.display = "block";
     {% comment %} document.querySelector(".popup").style.display = "block";
     document.querySelector(".popup").style.display = "block"; {% endcomment %}
   }
