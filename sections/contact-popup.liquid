@@ -255,7 +255,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
   </div>
   <div class="color-{{ section.settings.color_scheme }} gradient" style="display:none" id="popup-section2">
     <div class="contact page-width section-{{ section.id }}-padding">
-      <div class="center">
+      {% comment %} <div class="center">
         <div class="wave"></div>
         <div class="wave"></div>
         <div class="wave"></div>
@@ -266,7 +266,8 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
         <div class="wave"></div>
         <div class="wave"></div>
         <div class="wave"></div>
-      </div>
+      </div> {% endcomment %}
+      <img src="{{ 'loading_gif.gif' | asset_url }}"  alt="loading gif">
     </div>
   </div>
   <div class="color-{{ section.settings.color_scheme }} gradient" id="popup-section3">
@@ -374,6 +375,8 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
   var star = 0;
 
   function openPopup(){
+    document.querySelector(".popup").style.display = "block";
+    document.querySelector(".popup").style.display = "block";
     document.querySelector(".popup").style.display = "block";
   }
   window.addEventListener("load", function () {
