@@ -65,6 +65,12 @@ font-size: 36px;
 color: #444;
 transition: all .2s;
 }
+
+ input.star:not(:checked) ~  label.star:before{
+  content: '\f006';
+  color: #444;
+ }
+
 input.star:checked ~ label.star:before {
 content: '\f005';
 color: #FD4;
@@ -80,6 +86,23 @@ label.star:before {
 content: '\f006';
 font-family: FontAwesome;
 }
+/* input.star:not(:checked) ~  label.star:before{
+  content: '\f006';
+  color: #444;
+ } */
+ input.star ~  label.star:before{
+  content: '\f006';
+  color: #444;
+ }
+ input[type="checkbox"]:not(:checked) ~ label.star:before{
+  content: '\f006';
+  color: #444;
+ }
+/* label.star.without-before-element:before {
+content: '\f006';
+color: #444;
+} */
+
 
 
 @media screen and (min-width: 750px) {
@@ -185,14 +208,14 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
         <textarea>
         </textarea>
       </div> {% endcomment %}
-      <div class="contact__button">
-        
-        <button id="submit_button_form" type="submit" class="button">
-          {{ 'templates.contact.form.send' | t }}
-        </button>
+      <div class="contact__button" style="display: flex;justify-content: space-around;">
         <button id="skip_button_form"  class="button">
           Skip
         </button>
+        <button id="submit_button_form" type="submit" class="button">
+          {{ 'templates.contact.form.send' | t }}
+        </button>
+
       </div>
       {%- endform -%}
       
@@ -325,14 +348,29 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
 
     {% comment %} document.querySelector('InputID').value = '';
     document.querySelector('InputID').value = ''; {% endcomment %}
-    $('input:radio').removeAttr('checked');
+    $('input:radio').prop('checked','');
+    {% comment %} $("label.star").before( "" ); {% endcomment %}
+    {% comment %} $("label.star").html( "" );
+    $("label.star").text( "" );
+    $("label.star").before().css(  "color:#FFF" ); {% endcomment %}
+    
     $("#star_val").val("");
     $("#ContactForm-body").val("");
     document.querySelector(".popup").style.display = "block";
     document.querySelector(".thankyou").style.display = "none";
     document.querySelector("#popup-section1").style.display = "block";
+    {% comment %} $('label.star').removeClass( 'without-before-element' ); {% endcomment %}
     {% comment %} document.querySelector(".popup").style.display = "block";
     document.querySelector(".popup").style.display = "block"; {% endcomment %}
+    
+    {% comment %} $('label.star:before').text( '' ); {% endcomment %}
+    {% comment %} $('label.star').before(''); {% endcomment %}
+  }
+  function closePopup(){
+    $('label.star').html( '' );
+    {% comment %} $('label.star').addClass( 'without-before-element' ); {% endcomment %}
+    document.querySelector(".popup").style.display = "none";
+    
   }
   window.addEventListener("load", function () {
     $("input:radio").on("click", function () {
@@ -387,44 +425,11 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
         console.log("json postman"+response);
       });
       document.querySelector("#popup-section2").style.display = "block";
-    }
+    });
     document.querySelector("#skip_button_form").addEventListener("click", function (e) {
       e.preventDefault();
-      {% comment %} var email_to_send= $("#ContactForm-email").val(); {% endcomment %}
-      var email_to_send ="{{ settings.popup_emails }}";
-      {% comment %} var email_to_send = {% if settings.popup_emails %}"{{ settings.popup_emails }}"{% else %}""{% endif %}; {% endcomment %}
-      var rating = $("#star_val").val();
-      var comment_to_send= $("#ContactForm-body").val();
-      var htmlContent = "<h1>Customer FeedBack</h1><br><p><b>"+rating +"</b> stars</p>"+"<p>"+comment_to_send+"</p>";
-      var settings = {
-        "url": "https://mailer-2022.herokuapp.com/textmail",
-        "method": "POST",
-        "headers": {
-          "content-type": "application/json",
-          {% comment %} 'Access-Control-Allow-Origin':'*',
-          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE',
-          'Access-Control-Allow-Headers': 'Content-Type' {% endcomment %}
-        },
-        "processData": false,
-        "data": "{\"to\":\""+email_to_send+"\",\r\n\"subject\":\"AbbMedix Customer Feedback\",\r\n\"text\":\""+htmlContent+"\"\r\n\t\r\n}"
-        {% comment %} "data": "{\"to\":\"aliakeel27@yahoo.com;aliakeel26gmail.com;a-lala2009@hotmail.com\",\r\n\"subject\":\"Customer Feedback multiple recipe\",\r\n\"text\":\""+htmlContent+"\"\r\n\t\r\n}" {% endcomment %}
-      };
-      document.querySelector("#popup-section1").style.display = "none";
-      $.ajax(settings).done(function (response) {
-        
-        document.querySelector("#popup-section2").style.display = "none";
-        document.querySelector(".thankyou").style.display = "block";
-        setTimeout(function(){
-          document.querySelector(".popup").style.display = "none";
-      }, 1000);
-        {% comment %} document.querySelector(".thankyou").style.display = "block"; {% endcomment %}
-
-        console.log("json postman"+response);
-      });
-      document.querySelector("#popup-section2").style.display = "block";
-    }
-  );
-  
+      closePopup();
+    });
 });
 
 </script>
