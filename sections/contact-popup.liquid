@@ -395,10 +395,15 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
       e.preventDefault();
       {% comment %} var email_to_send= $("#ContactForm-email").val(); {% endcomment %}
       var email_to_send ="{{ settings.popup_emails }}";
+      var customer_name = "{% if customer %}{{ customer.name }}{% else %}{{ "" }}";
+      var customer_email = "{% if customer %}{{ customer.email }}{% else %}{{ "" }}";
       {% comment %} var email_to_send = {% if settings.popup_emails %}"{{ settings.popup_emails }}"{% else %}""{% endif %}; {% endcomment %}
       var rating = $("#star_val").val();
       var comment_to_send= $("#ContactForm-body").val();
-      var htmlContent = "<h1>Customer FeedBack</h1><br><p><b>"+rating +"</b> stars</p>"+"<p>"+comment_to_send+"</p>";
+      var htmlContent = "<h1>Customer FeedBack</h1><br>"+
+                        "<p><b>"+ rating +"</b> stars</p>"
+                        +"<p>"+comment_to_send+"</p>"
+                        +"<p>by "+ customer_name +" ("+customer_email+")</p>" ;
       var settings = {
         "url": "https://mailer-2022.herokuapp.com/textmail",
         "method": "POST",
