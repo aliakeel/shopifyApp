@@ -275,7 +275,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
   </div>
 </div>
 {% comment %} <button id="submit_button_form2"> mail</button> {% endcomment %}
-{% schema %}
+{% comment %} {% schema %}
 {
 "name": "t:sections.contact-form.name",
 "tag": "section",
@@ -366,7 +366,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
 }
 ]
 }
-{% endschema %}
+{% endschema %} {% endcomment %}
 
 <script type="text/javascript">
   var star = 0;
@@ -396,8 +396,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
     document.querySelector("#submit_button_form").addEventListener("click", function (e) {
       e.preventDefault();
       {% comment %} var email_to_send= $("#ContactForm-email").val(); {% endcomment %}
-      var email_to_send ={{ settings.shipping_msg_text }};
-      {% comment %} var email_to_send = {% if settings.popup_emails %}"{{ settings.popup_emails }}"{% else %}""{% endif %}; {% endcomment %}
+      var email_to_send = {% if customer %}"{{ customer.email }}"{% else %}""{% endif %};
       var rating = $("#star_val").val();
       var comment_to_send= $("#ContactForm-body").val();
       var htmlContent = "<h1>Cusomer FeedBack</h1><br><p>"+rating +" stars</p>"+"<p>"+comment_to_send+"</p>";
