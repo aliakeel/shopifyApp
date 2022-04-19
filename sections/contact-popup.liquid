@@ -376,8 +376,10 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
 
   function openPopup(){
     document.querySelector(".popup").style.display = "block";
-    document.querySelector(".popup").style.display = "block";
-    document.querySelector(".popup").style.display = "block";
+    document.querySelector(".thankyou").style.display = "none";
+    document.querySelector("#popup-section1").style.display = "block";
+    {% comment %} document.querySelector(".popup").style.display = "block";
+    document.querySelector(".popup").style.display = "block"; {% endcomment %}
   }
   window.addEventListener("load", function () {
     $("input:radio").on("click", function () {
