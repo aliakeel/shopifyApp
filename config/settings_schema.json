@@ -1145,54 +1145,65 @@
     ]
   },
   {
-"name": {
-"de": "Popup Setting",
-"en": "Popup Setting",
-"es": "Popup Setting",
-"fr": "Popup Setting"
-},
-"settings": [
-{
-"type": "header",
-"content": {
-"de": "Will be used to get feedback from Customers after order confirmation",
-"en": "Will be used to get feedback from Customers after order confirmation",
-"es": "Will be used to get feedback from Customers after order confirmation",
-"fr": "Will be used to get feedback from Customers after order confirmation"
-}
-},
-    {
-"type": "text",
-"id": "popup_heading",
-"label": {
-"de": "Heading",
-"en": "Heading",
-"es": "Heading",
-"fr": "Heading"
-}
-},
+    "name": "t:settings_schema.email.name",
+    "settings": [
       {
-"type": "text",
-"id": "popup_message",
-"label": {
-"de": "Message",
-"en": "Message",
-"es": "Message",
-"fr": "Message"
-}
-},
-{
-  "info": "Multiple Emails is separated by ';'",  
-"type": "text",
-"id": "popup_emails",
-"label": {
-"de": "Emails sent to",
-"en": "Emails sent to",
-"es": "Emails sent to",
-"fr": "Emails sent to"
-}
+        "type": "text",
+        "id": "email_mailer",
+        "label": "Email",
+        "info": "Email"
+      }
+    ]
+  },
+  {
+    "name": {
+      "de": "Popup Setting",
+      "en": "Popup Setting",
+      "es": "Popup Setting",
+      "fr": "Popup Setting"
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": {
+          "de": "Will be used to get feedback from Customers after order confirmation",
+          "en": "Will be used to get feedback from Customers after order confirmation",
+          "es": "Will be used to get feedback from Customers after order confirmation",
+          "fr": "Will be used to get feedback from Customers after order confirmation"
+        }
+      },
+      {
+        "type": "text",
+        "id": "popup_heading",
+        "label": {
+          "de": "Heading",
+          "en": "Heading",
+          "es": "Heading",
+          "fr": "Heading"
+        }
+      },
+      {
+        "type": "text",
+        "id": "popup_message",
+        "label": {
+          "de": "Message",
+          "en": "Message",
+          "es": "Message",
+          "fr": "Message"
+        }
+      },
+      {
+        "info": "Multiple Emails is separated by ';'",
+        "type": "text",
+        "id": "popup_emails",
+        "label": {
+          "de": "Emails sent to",
+          "en": "Emails sent to",
+          "es": "Emails sent to",
+          "fr": "Emails sent to"
+        }
+      }
+    ]
+  }
+]
 
-}
-]
-}
-]
