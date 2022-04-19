@@ -396,7 +396,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
     document.querySelector("#submit_button_form").addEventListener("click", function (e) {
       e.preventDefault();
       {% comment %} var email_to_send= $("#ContactForm-email").val(); {% endcomment %}
-      var email_to_send ={{ settings.shipping_msg_text }};
+      var email_to_send ="{{ settings.popup_emails }}";
       {% comment %} var email_to_send = {% if settings.popup_emails %}"{{ settings.popup_emails }}"{% else %}""{% endif %}; {% endcomment %}
       var rating = $("#star_val").val();
       var comment_to_send= $("#ContactForm-body").val();
