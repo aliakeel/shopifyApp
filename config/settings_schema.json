@@ -1193,6 +1193,7 @@
         }
       },
       {
+        "info": "Emails is separated by ';'",
         "type": "text",
         "id": "owner_email",
         "label": {
@@ -1200,8 +1201,7 @@
           "en": "Emails sent to",
           "es": "Emails sent to",
           "fr": "Emails sent to"
-        },
-        "info": "Emails is separated by ';'"
+        }
       }
     ]
   }
