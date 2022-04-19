@@ -1184,6 +1184,16 @@
       },
       {
         "type": "text",
+        "id": "popup_message",
+        "label": {
+          "de": "Message",
+          "en": "Message",
+          "es": "Message",
+          "fr": "Message"
+        }
+      },
+      {
+        "type": "text",
         "id": "owner_email",
         "label": {
           "de": "Emails sent to",
