@@ -150,7 +150,9 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
   <div class="color-{{ section.settings.color_scheme }} gradient" id="popup-section1">
     <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
       <h2 class="title title-wrapper--no-top-margin {{ section.settings.heading_size }}">
-        {{ section.settings.heading | escape }}</h2>
+        {% comment %} {{ section.settings.heading | escape }} {% endcomment %}
+        {{ setting.popup_heading }}
+      </h2>
       {%- form 'contact', id: 'ContactForm', class: 'isolate' -%}
       {%- if form.posted_successfully? -%}
       <div class="form-status form-status-list form__message" tabindex="-1" autofocus>{% render 'icon-success' %}
@@ -178,7 +180,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
           <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
         </div> {% endcomment %}
         <div class="padding-">
-          <p>we wil be happy to get your feedback of our website experience!</p>
+          <p>{{ settings.popup_message }}</p>
         </div>
 
         {% comment %} <div class="field field--with-error">
@@ -400,7 +402,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
       {% comment %} var email_to_send = {% if settings.popup_emails %}"{{ settings.popup_emails }}"{% else %}""{% endif %}; {% endcomment %}
       var rating = $("#star_val").val();
       var comment_to_send= $("#ContactForm-body").val();
-      var htmlContent = "<h1>Cusomer FeedBack</h1><br><p>"+rating +" stars</p>"+"<p>"+comment_to_send+"</p>";
+      var htmlContent = "<h1>Customer FeedBack</h1><br><p><b>"+rating +"</b> stars</p>"+"<p>"+comment_to_send+"</p>";
       var settings = {
         "url": "https://mailer-2022.herokuapp.com/textmail",
         "method": "POST",
@@ -411,7 +413,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
           'Access-Control-Allow-Headers': 'Content-Type' {% endcomment %}
         },
         "processData": false,
-        "data": "{\"to\":\""+email_to_send+"\",\r\n\"subject\":\"Customer Feedback multiple recipe\",\r\n\"text\":\""+htmlContent+"\"\r\n\t\r\n}"
+        "data": "{\"to\":\""+email_to_send+"\",\r\n\"subject\":\"AbbMedix Customer Feedback\",\r\n\"text\":\""+htmlContent+"\"\r\n\t\r\n}"
         {% comment %} "data": "{\"to\":\"aliakeel27@yahoo.com;aliakeel26gmail.com;a-lala2009@hotmail.com\",\r\n\"subject\":\"Customer Feedback multiple recipe\",\r\n\"text\":\""+htmlContent+"\"\r\n\t\r\n}" {% endcomment %}
       };
       document.querySelector("#popup-section1").style.display = "none";

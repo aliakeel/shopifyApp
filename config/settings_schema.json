@@ -1183,7 +1183,7 @@
         }
       },
       {
-        "type": "text",
+        "type": "textarea",
         "id": "popup_message",
         "label": {
           "de": "Message",
