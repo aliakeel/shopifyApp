@@ -1195,7 +1195,7 @@
       {
         "info": "Emails is separated by ';'",
         "type": "text",
-        "id": "owner_email",
+        "id": "popup_emails",
         "label": {
           "de": "Emails sent to",
           "en": "Emails sent to",
