@@ -151,7 +151,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
     <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
       <h2 class="title title-wrapper--no-top-margin {{ section.settings.heading_size }}">
         {% comment %} {{ section.settings.heading | escape }} {% endcomment %}
-        {{ setting.popup_heading }}
+        {{ settings.popup_heading }}
       </h2>
       {%- form 'contact', id: 'ContactForm', class: 'isolate' -%}
       {%- if form.posted_successfully? -%}
