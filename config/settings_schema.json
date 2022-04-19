@@ -1193,7 +1193,7 @@
         }
       },
       {
-        "info": "Emails is separated by ';'",
+        "info": "Multiple Emails is separated by ';'",
         "type": "text",
         "id": "popup_emails",
         "label": {
